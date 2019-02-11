@@ -1,7 +1,7 @@
 function validate() {
     var isValid = true;
     if ($('#Name').val().trim() == "") {
-        $('#Name').css('border-color', 'Red');
+        $('#Name').css('border-color', 'black');
         isValid = false;
     }
     else {
