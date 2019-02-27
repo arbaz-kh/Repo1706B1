@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<?php
+
+    function Operations()
+    {
+		if(isset($_POST['btnAdd']))
+        {
+        	$num1 = $_POST['txtNum1'];
+            $num2 = $_POST['txtNum2'];
+            
+            $result  = $num1+$num2;
+            
+            return $result;
+        }    	    
+    }
+
+?>
+<body>
+<div class="container-fluid">
+
+<form method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">First Number</label>
+    <input type="text" class="form-control" name="txtNum1" aria-describedby="emailHelp" placeholder="Enter First Number">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Second Number</label>
+    <input type="text" class="form-control" name="txtNum2" placeholder="Enter Second Number">
+  </div>
+  
+  <button type="submit" name="btnAdd" class="btn btn-primary">Addition</button>
+  
+  <label><?php echo "Result: ".Operations() ?></label>
+</form>
+</div>
+</body>
+</html>
