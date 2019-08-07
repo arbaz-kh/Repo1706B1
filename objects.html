@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular JS</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<body ng-app="module1">
+	<div ng-controller="objCtrl">
+		<ul>
+			<li ng-repeat="y in data">
+				Name: {{ y.name }}
+				City: {{ y.city }}
+				Age: {{ y.age }}
+			</li>
+		</ul>
+	</div>
+</body>
+
+<script>
+	var app = angular.module("module1",[]);
+
+	app.controller("objCtrl",function($scope){
+
+		$scope.data = [{name:'saad',city:'Karachi',age:20},{name:'ahmed',city:'Lahore',age:22}];
+	});
+</script>
+</html>
