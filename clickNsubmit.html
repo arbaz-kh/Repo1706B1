@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular JS</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+<body ng-app="Module1" ng-init="x=0">
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+				<h2>Click and Submit Directives</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" ng-controller="PostData">
+		<div class="col-md-4">
+			<form ng-submit="appendName()">
+				<div class="form-group">
+					<label>Customer</label>
+					<input type="text" ng-model="cstName" required class="form-control">
+				</div>
+				<input type="submit" class="btn btn-primary">
+			</form>			
+		</div>
+		<div class="col-md-6">
+			<table>
+				<tr>
+					<th>Customer Name</th>
+				</tr>
+				<tr ng-repeat="x in nameArray">
+					<td>{{ x }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<br>
+	<br>
+	<div class="row">
+		<div class="col-md-10">
+			<a href="#" class="btn btn-primary" ng-click="x=x+1">Button has been clicked {{x}} times</a>
+
+			<a href="#" class="btn btn-primary" ng-click="x=0">Reset</a>
+		</div>
+	</div>
+</div>
+
+<script>
+	var app = angular.module("Module1",[]);
+
+	app.controller("PostData",function($scope){
+		$scope.nameArray = [];
+
+		$scope.appendName = function(){
+
+			$scope.nameArray.push($scope.cstName);
+			$scope.cstName = '';
+		}
+
+	})
+</script>
+</body>
