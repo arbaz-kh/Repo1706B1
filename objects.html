@@ -3,27 +3,87 @@
 <head>
 	<title>Angular JS</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body ng-app="module1">
-	<div ng-controller="objCtrl">
-		<ul>
-			<li ng-repeat="y in data">
-				Name: {{ y.name }}
-				City: {{ y.city }}
-				Age: {{ y.age }}
-			</li>
-		</ul>
+		<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+				<h2>Filters and Routing</h2>
+			</div>
+		</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				  <a class="navbar-brand" href="#">Navbar</a>
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				    <span class="navbar-toggler-icon"></span>
+				  </button>
+
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				    <ul class="navbar-nav mr-auto">
+				      <li class="nav-item active">
+				        <a class="nav-link" href="#!Index">Home <span class="sr-only">(current)</span></a>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link" href="#!contact">Contact</a>
+				      </li>
+				      
+				    </ul>				    
+				  </div>
+				</nav>
+			</div>
+		</div>
+		<!-- chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security -->
+		<div ng-view></div>
+
+	<div class="row" ng-controller="objCtrl">
+		<div class="col-md-4">
+			<form class="form-group">
+				<label>Search</label>
+				<input type="text" ng-model="search" class="form-control">
+			</form>
+		</div>
+		<div class="col-md-8">						
+			<table class="table table-bordered">
+				<tr>
+					<th>Name</th>
+					<th>City</th>
+					<th>Age</th>
+				</tr>
+				<tr ng-repeat="y in data | filter:{name:search} ">
+					<td>{{ y.name }}</td>
+					<td>{{ y.city }}</td>
+					<td>{{ y.age }}</td>
+				</tr>
+			</table>
+		</div>
 	</div>
+	<div ng-controller="datCtrl">
+    	<span>{{ today | date :'fullDate' }}</span><br>
+	</div>	
+
 </body>
 
 <script>
-	var app = angular.module("module1",[]);
+	var app = angular.module("module1",["ngRoute"]);
 
 	app.controller("objCtrl",function($scope){
 
-		$scope.data = [{name:'saad',city:'Karachi',age:20},{name:'ahmed',city:'Lahore',age:22}];
+		$scope.data = [{name:'saad',city:'Karachi',age:20},{name:'ahmed',city:'Lahore',age:22},{name:'Ali',city:'Islamabad',age:28}];
 	});
+
+	app.controller('datCtrl', function($scope) {
+    	$scope.today = new Date();
+	});
+
+	app.config(function($routeProvider){
+		$routeProvider.when("/Index", {templateUrl : "Index.html"})
+
+		$routeProvider.when("/contact", {templateUrl : "contact.html"})
+	})
 </script>
 </html>
